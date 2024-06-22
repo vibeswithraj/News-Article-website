@@ -11,14 +11,15 @@ const ArticleProvider = ({ children }) => {
   const [articleDetails, setArticleDetails] = useState({});
   const [allData, setAllData] = useState([]);
 
-  const API_KEY = "c355878407cc4f749357f561ca502738";
-
   const dispatch = useDispatch();
+  console.log(JSON.stringify(import.meta.env.VITE_API_KEY));
 
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=${country.param.toLowerCase()}&category=${category}&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/top-headlines?country=${country.param.toLowerCase()}&category=${category}&apiKey=${
+          import.meta.env.VITE_API_KEY
+        }`
       );
       if (data.totalResults === 0) {
         console.log("No results found!");
