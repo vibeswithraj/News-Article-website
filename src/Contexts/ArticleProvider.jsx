@@ -12,7 +12,6 @@ const ArticleProvider = ({ children }) => {
   const [allData, setAllData] = useState([]);
 
   const dispatch = useDispatch();
-  console.log(JSON.stringify(import.meta.env.VITE_API_KEY));
 
   useEffect(() => {
     const fetchData = async () => {
