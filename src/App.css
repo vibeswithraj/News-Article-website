@@ -1,0 +1,10 @@
+/* 
+.scroll{
+    scrollbar-width: none;
+} */
+
+@media (max-width: 1024px) {
+    .menu{
+        display: none;
+    }
+}
