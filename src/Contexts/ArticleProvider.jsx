@@ -18,13 +18,7 @@ const ArticleProvider = ({ children }) => {
       const { data } = await axios.get(
         `https://newsapi.org/v2/top-headlines?country=${country.param.toLowerCase()}&category=${category}&apiKey=${
           import.meta.env.VITE_API_KEY
-        }`,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        }`
       );
       if (data.totalResults === 0) {
         console.log("No results found!");
