@@ -22,13 +22,13 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <ArticleProvider>
           <Router>
-            <Suspense
+            {/* <Suspense
               fallback={
                 <Backdrop sx={{ color: "#ffff" }} open={true}>
                   <CircularProgress color="inherit" />
                 </Backdrop>
               }
-            >
+            > */}
               <Nav />
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -38,7 +38,7 @@ const App = () => {
                 <Route path="/articledetail/:id" element={<ArticleDetails />} />
               </Routes>
               <Footer />
-            </Suspense>
+            {/* </Suspense> */}
           </Router>
         </ArticleProvider>
         <Toaster toastOptions={{ position: "top-right" }} />

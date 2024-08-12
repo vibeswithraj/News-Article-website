@@ -10,8 +10,9 @@ import {
   setCategoryOpen,
   setMenuOpen,
   setCountryList,
+  setTheme,
 } from "../Contexts/articleSlice.js";
-import { IconButton, Tooltip } from "@mui/material";
+import { FormControlLabel, IconButton, Switch, Tooltip } from "@mui/material";
 
 const Nav = () => {
   const { category, setCategory, country, setCountry } =
@@ -20,6 +21,7 @@ const Nav = () => {
   const menuOpen = useSelector((state) => state.menuOpen);
   const countryList = useSelector((state) => state.countryList);
   const categoryOpen = useSelector((state) => state.categoryOpen);
+  const theme = useSelector((state) => state.theme);
 
   const categories = [
     {
@@ -99,7 +101,13 @@ const Nav = () => {
   ];
 
   return (
-    <nav className="w-full h-[60px] shadow flex justify-between items-center px-5 sm:px-10 relative">
+    <nav
+      className={
+        theme
+          ? "w-full h-[60px] shadow flex justify-between items-center px-5 sm:px-10 relative bg-[#272727] text-white"
+          : "w-full h-[60px] shadow flex justify-between items-center px-5 sm:px-10 relative"
+      }
+    >
       <div className="w-fit h-full flex items-center justify-between gap-16">
         <Link to={"/home"}>
           <img src={logoImg || ""} width={45} height={45} alt="logo" />
@@ -111,8 +119,14 @@ const Nav = () => {
               to={item?.path}
               className={(navClass) =>
                 navClass.isActive
-                  ? "w-fit h-full py-4 text-center text-base font-medium cursor-pointer text-black border-b-2 border-black"
-                  : "w-fit h-full py-4 text-center text-base font-medium cursor-pointer text-gray-600 hover:text-black"
+                  ? `w-fit h-full py-4 text-center text-base font-medium cursor-pointer ${
+                      !theme
+                        ? "text-black"
+                        : "bg-gradient-to-r from-orange-500 via-blue-500 to-green-500 bg-clip-text text-transparent"
+                    } border-b-2 ${!theme ? "border-black" : "border-white"}`
+                  : `w-fit h-full py-4 text-center text-base font-normal cursor-pointer ${
+                      theme ? `text-gray-300 hover:text-white` : `text-gray-600`
+                    }`
               }
             >
               <span>{item?.name}</span>
@@ -121,8 +135,12 @@ const Nav = () => {
           <div
             className={
               categoryOpen
-                ? "w-fit h-full relative text-base font-medium flex items-center text-black border-none cursor-pointer"
-                : "w-fit h-full relative text-base font-medium flex items-center text-gray-600 hover:text-black cursor-pointer"
+                ? `w-fit h-full relative text-base font-medium flex items-center ${
+                    !theme ? "text-black" : "text-white"
+                  } border-none cursor-pointer`
+                : `w-fit h-full relative text-base font-medium flex items-center ${
+                    theme ? "hover:text-gray-300" : "hover:text-gray-600"
+                  } cursor-pointer`
             }
             onClick={() => dispatch(setCategoryOpen())}
           >
@@ -161,8 +179,12 @@ const Nav = () => {
           <div
             className={
               countryList
-                ? "w-fit h-full relative text-base font-medium flex items-center text-black border-none cursor-pointer"
-                : "w-fit h-full relative text-base font-medium flex items-center text-gray-600 hover:text-black cursor-pointer"
+                ? `w-fit h-full relative text-base font-medium flex items-center ${
+                    !theme ? "text-black" : "text-white"
+                  } border-none cursor-pointer`
+                : `w-fit h-full relative text-base font-medium flex items-center ${
+                    theme ? "hover:text-gray-300" : "hover:text-gray-600"
+                  } cursor-pointer`
             }
             onClick={() => dispatch(setCountryList())}
           >
@@ -199,9 +221,21 @@ const Nav = () => {
         </div>
       </div>
       <div className="w-fit h-full flex items-center gap-5 sm:gap-7">
+        <FormControlLabel
+          control={
+            <Switch
+              color="default"
+              checked={theme}
+              onClick={() => dispatch(setTheme())}
+              size="medium"
+            />
+          }
+          label={!theme ? "Light" : "Dark"}
+          labelPlacement="start"
+        />
         <Tooltip title="profile" arrow>
           <IconButton>
-            <FaRegUser size={16} color="black" />
+            <FaRegUser size={16} color={theme ? "white" : "black"} />
           </IconButton>
         </Tooltip>
         <HiOutlineMenuAlt3

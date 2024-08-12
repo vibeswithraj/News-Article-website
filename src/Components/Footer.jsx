@@ -5,12 +5,16 @@ import icon2 from "../assets/Group 257.svg";
 import { FaTwitter } from "react-icons/fa";
 import { FaRedditAlien } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const theme = useSelector((state) => state.theme);
   return (
-    <footer className="w-full h-auto lg:h-[250px] bg-slate-800 flex flex-wrap py-16 gap-16 items-center sm:items-stretch justify-evenly lg:justify-between px-2 sm:px-10">
+    <footer className={`w-full h-auto lg:h-[250px] ${theme ? 'bg-[#272727]' : 'bg-slate-800'} flex flex-wrap py-16 gap-16 items-center sm:items-stretch justify-evenly lg:justify-between px-2 sm:px-10`}>
       <div className="w-fit h-auto flex flex-col gap-5 md:gap-10 lg:gap-0 justify-between">
-        <Link to={"/home"}><img src={logo || ""} alt="logo" /></Link>
+        <Link to={"/home"}>
+          <img src={logo || ""} alt="logo" />
+        </Link>
         <span className="text-gray-400">copyright © 2020 | NBC NEWS</span>
       </div>
       <ul className="w-fit h-fit flex gap-3 flex-col">
@@ -50,7 +54,7 @@ const Footer = () => {
           </li>
           <li>
             <Link to={"#"}>
-              <FaRedditAlien color="white" size={24} title="reddit"/>
+              <FaRedditAlien color="white" size={24} title="reddit" />
             </Link>
           </li>
           <li>

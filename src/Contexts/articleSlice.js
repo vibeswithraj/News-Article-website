@@ -7,6 +7,7 @@ const initialState = {
   growSearch: false,
   countryList: false,
   categoryOpen: false,
+  theme: false,
   articlePerPage: 6,
   loadinIndex: [{}, {}, {}, {}, {}, {}],
 };
@@ -20,6 +21,7 @@ const articleReducer = createSlice({
     setMenuOpen: (state) => void (state.menuOpen = !state.menuOpen),
     setCategoryOpen: (state) => void (state.categoryOpen = !state.categoryOpen),
     setCountryList: (state) => void (state.countryList = !state.countryList),
+    setTheme: (state) => void (state.theme = !state.theme),
   },
 });
 
@@ -31,5 +33,6 @@ export const {
   setCountryList,
   setAllData,
   setCurrentPage,
+  setTheme,
 } = articleReducer.actions;
 export default articleReducer.reducer;

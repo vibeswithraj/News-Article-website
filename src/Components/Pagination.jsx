@@ -18,7 +18,7 @@ const Pagination = ({
         className={
           currentPage === 1
             ? "w-fit h-fit p-1 rounded-full opacity-20"
-            : "w-fit h-fit p-1 hover:bg-gray-200 rounded-full"
+            : `w-fit h-fit p-1 ${`hover:bg-gray-200`} rounded-full`
         }
         disabled={currentPage === 1 ? true : false}
         onClick={() => {
